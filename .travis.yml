@@ -22,15 +22,12 @@ before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   - export PATH=$PATH:"/c/Program Files/heroku/bin"
 
-
+# Install the Faraday library, which is required before deploying the build to Heroku
 before_deploy:
-  - heroku login -i
-  - heroku --version
   - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
-
-
 deploy:
-  provider: heroku
+  provider: heroku # Tell Travis CI to deploy your application to Heroku.
   skip-cleanup: true
-  api_key: "$HEROKU_TOKEN"
-  app: node-travis-app
+  api_key: $HEROKU_TOKEN # The environment variable you'll create later for a token.
+	app: node-travis-app # Tells deployment should be made for the app node-travis-app.
+  
