@@ -27,8 +27,8 @@ before_deploy:
   - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
   
 deploy:
-  provider: heroku # Tell Travis CI to deploy your application to Heroku.
+  provider: heroku
   skip-cleanup: true
-  api_key: $HEROKU_TOKEN # The environment variable you'll create later for a token.
-	app: node-travis-app # Tells deployment should be made for the app node-travis-app.
-  
+  api_key: $HEROKU_API_KEY # Use the Heroku API key instead of interactive login
+  app: node-travis-app
+
