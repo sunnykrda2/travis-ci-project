@@ -17,3 +17,17 @@ install: # Hook provided by Travis CI
 # Tell Travis CI to run the test for your Node application
 script:
 - npm test 
+
+before_install:
+  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+  - export PATH=$PATH:C:\Program Files\heroku\bin
+
+before_deploy:
+  - heroku --version
+  - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
+
+deploy:
+  provider: heroku
+  skip-cleanup: true
+  api_key: $HEROKU_TOKEN
+  app: node-travis-app
