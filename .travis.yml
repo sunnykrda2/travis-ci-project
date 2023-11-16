@@ -20,7 +20,7 @@ script:
 
 before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-  - set PATH=%PATH%;C:\Program Files\heroku\bin
+  - export PATH=$PATH:"/c/Program Files/heroku/bin"
 
 
 before_deploy:
