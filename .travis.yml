@@ -24,11 +24,13 @@ before_install:
 
 
 before_deploy:
+  - heroku login -i
   - heroku --version
   - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
+
 
 deploy:
   provider: heroku
   skip-cleanup: true
-  api_key: $HEROKU_TOKEN
+  api_key: "$HEROKU_TOKEN"
   app: node-travis-app
