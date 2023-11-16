@@ -25,6 +25,7 @@ before_install:
 # Install the Faraday library, which is required before deploying the build to Heroku
 before_deploy:
   - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
+  
 deploy:
   provider: heroku # Tell Travis CI to deploy your application to Heroku.
   skip-cleanup: true
